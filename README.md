@@ -76,6 +76,9 @@ Interpretation
 ---
 
 ### Directory Structure
+## 📁 Directory Structure
+
+```text
 nurse-turnover-analysis/
 ├── data/
 │   ├── raw/                 # 取得したままの元データ
@@ -95,30 +98,7 @@ nurse-turnover-analysis/
 │
 ├── requirements.txt         # 依存ライブラリ一覧
 └── README.md
----
-🛠 Technology Stack
 
-Language
-
-Python 3.10+
-
-Libraries
-
-pandas
-
-numpy
-
-matplotlib / seaborn
-
-scikit-learn
-
-statsmodels
-
-Environment
-
-Jupyter Notebook
-
-Git / GitHub
 ---
 📌 Notes
 
