@@ -95,7 +95,7 @@ nurse-turnover-analysis/
 │
 ├── requirements.txt         # 依存ライブラリ一覧
 └── README.md
-
+---
 🛠 Technology Stack
 
 Language
@@ -119,7 +119,7 @@ Environment
 Jupyter Notebook
 
 Git / GitHub
-
+---
 📌 Notes
 
 本分析は 因果関係の証明ではなく、相関・構造の整理を目的としています。
