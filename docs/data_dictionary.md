@@ -183,7 +183,7 @@ commute_time
 1時間24分 → 84分
 
 9. Labor Market Variables（労働市場）
-job_openings_ratio_fy2023
+job_openings_ratio
 
 定義：看護職有効求人倍率
 

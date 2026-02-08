@@ -62,7 +62,7 @@
 
 ---
 
-## 📖 Overview（概要）
+## 📖 Overview
 **「看護師の離職は、本当に“個人の問題”なのか？」**
 
 私は約10年間、看護師として臨床現場に従事し、多くの同僚が離職していく現実を目の当たりにしてきました。  
@@ -82,30 +82,39 @@
 ---
 
 ## ✅ Key Findings
+
 - 離職率は「個人要因」だけでなく、**労働負荷・生活コスト・労働市場**などの構造要因と整合的な関連が見られた  
 - **都市部 vs 地方**など、地域構造によって離職のパターンが異なる可能性が示唆された  
-- データ品質が結果の信頼性を左右することを確認した
+- データ品質が結果の信頼性を左右することを確認した  
+
+以下の図は、地域構造によって離職要因のパターンが異なる可能性を示した代表的な分析結果です。
+
+![Urban vs Rural Discovery](outputs/figures/final_discovery.png)
+※ 地方では持ち家率が既卒看護師の定着と負の関連を示し、
+都市部では人口密度が新卒離職と正の関連を示した。
 
 ---
 
-## 🖼 Hero Figure
+## ✅ Model Selection
 
-<p align="center">
-  <img src="outputs/figures/impact_translation.png" width="800">
-</p>
+### モデル性能比較（最終評価）
 
-最終モデルの係数を、現場で解釈可能なスケールに変換し、離職率に関連する主要構造要因を整理した。
+![モデル性能比較](outputs/figures/model_comparison_summary.png)
+
+最終的に 全体離職率のモデルは**Model D** を採用しました。  
+Model D は Model C に含まれていた説明変数のうち、統計的に有意でなかった変数を削除し、説明力を維持したままモデルの簡素化を行ったものです。
+
+採用理由は以下の通りです。
+
+- 調整済み決定係数を維持したままモデルの簡素化に成功した  
+- LOOCV性能が改善し、予測の安定性が向上した  
+- AIC / BICが改善し、モデルの効率性が向上した  
+- 説明変数が整理され、解釈性が向上した  
+- 不要な変数を削減することで過学習リスクを低減できた
 
 ---
 
-## ✅ Model Credibility
-<p align="center">
-  <img src="outputs/figures/pred_vs_actual.png" width="650">
-</p>
-
----
-
-## 🧩 Extension: Subgroup Analysis（Exploratory）
+## 🧩 Extension: Subgroup Analysis
 メインモデルを新卒・既卒に分割して適用したところ、全国一律の構造では十分な説明力が得られなかった。
 この結果を踏まえ、離職構造がキャリア段階と地域特性の組み合わせによって異なる可能性を検証するため、サブグループ分析を実施した。
 
@@ -170,7 +179,7 @@ Rawデータとコードから分析用データを再生成できる構造を�
 
 ---
 
-## 🔍 Analysis Flow（分析の流れ）
+## 🔍 Analysis Flow
 1. **Data Validation**  
    統計資料ごとの定義差・欠損・分布を確認  
 2. **Exploratory Data Analysis（EDA）**  
@@ -178,7 +187,14 @@ Rawデータとコードから分析用データを再生成できる構造を�
 3. **Modeling**  
    回帰分析により離職率に関連する主要因子を推定  
 4. **Interpretation**  
-   統計結果と臨床経験を統合し、構造的背景を仮説として整理  
+   統計結果と臨床経験を統合し、構造的背景を仮説として整理 
+　　回帰モデルで得られた係数を、現場で理解しやすいスケールに変換し、
+　　離職に影響する構造要因を整理した。
+
+　　![係数の現場スケール翻訳](outputs/figures/impact_translation.png)
+
+　　統計的な係数をそのまま提示するのではなく、
+　　現場の意思決定に活用できる形へ翻訳することを重視した。 
 5. **Subgroup Analysis**  
    新卒/既卒など、集団差で構造が変わるかを検証  
 
@@ -267,10 +283,10 @@ nurse-turnover-analysis/
 ├── requirements.txt
 └── README.md
 
-
-
 ---
+
 ## ⚠️ Limitations & Scope
+
 本分析は相関構造の整理を目的としており、因果関係を証明するものではありません
 
 解釈には臨床経験に基づく仮説が含まれます（政策提言は示唆の範囲）
@@ -279,6 +295,5 @@ nurse-turnover-analysis/
 
 ---
 
-
-👤 Author
+👤 Author  
 Hideomi Hayakawa
