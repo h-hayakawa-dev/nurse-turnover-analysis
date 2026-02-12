@@ -143,17 +143,23 @@ hospital_per_100k
 hospital_count ÷ population × 100000
 
 8. Cost of Living Variables（生活コスト）
-rent_private
+ent_private
 
-定義：民営借家平均家賃
+定義：民営借家の月額住居費（家賃＋共益費・管理費）の平均
 
 単位：円
 
-条件：
+対象：住宅の種類＝「13_民営借家」
 
-共益費を含む
+条件（母集団）：
 
-家賃0円物件除外
+家賃0円を除外（=「2_家賃0円を含まない」）
+
+共益費・管理費も0円を除外（=「2_0円を含まない」）
+
+算出式：
+
+rent_private = avg_rent_excl0 + avg_fee_excl0
 
 出所：住宅・土地統計調査
 
@@ -258,3 +264,16 @@ nurse_count
 分析基準年は固定（2023）
 
 外部統計更新時は差分検証を実施する
+
+### Hospital Structure Variables (Interpretive Design)
+
+| 変数名 | 定義 | 解釈ラベル |
+|---|---|---|
+| hospital_per_100k | 人口10万人あたり病院数 | 医療供給密度 |
+| large_hospital_500p_per_100k | 500床以上病院 / 人口 | 地域中核医療集約 |
+| large_hospital_700p_per_100k | 700床以上病院 / 人口 | 高度医療集約 |
+| mega_hospital_900p_per_100k | 900床以上病院 / 人口 | 構造的異質性 |
+| psychiatric_ratio | 精神科病院 / 全病院 | 診療構成 |
+
+※ 病床規模は制度上の区分ではないが、医療機能や組織複雑性を示す代理指標として用いている。  
+※ 主分析では500床以上病院指標を使用し、700床以上・900床以上の指標は仮説検証・感度分析用に位置付けている。
