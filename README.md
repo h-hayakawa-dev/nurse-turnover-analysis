@@ -283,8 +283,8 @@ nurse-turnover-analysis/
 │
 ├── data/
 │   ├── raw/
-│   ├── out/  
-│   └── processed/
+│   ├── interim/  # Clean + 集約まで
+│   └── mart/.   # 統合　+ 派生変数
 │
 ├── notebooks/
 │   ├── 00_extract_from_pdf.ipynb
