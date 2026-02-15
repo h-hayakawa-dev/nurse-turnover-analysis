@@ -83,8 +83,7 @@
 
 <b>「看護師の離職は、政策や制度設計によって改善できる構造課題ではないのか？」</b>
 
-臨床現場で離職を繰り返し目にする中で、離職は個人の意思や適性だけでなく、労働環境や生活コスト、<br>
-地域の労働市場構造といった外部要因の影響も大きいのではないかと考えました。
+臨床現場で離職を繰り返し目にする中で、離職は個人の意思や適性だけでなく、労働環境や生活コスト、地域の労働市場構造といった外部要因の影響も大きいのではないかと考えました。
 
 本プロジェクトでは、これらの構造要因をデータから検証しました。
 
@@ -99,12 +98,12 @@
 ![Urban vs Rural Discovery](outputs/figures/final_discovery.png)
 
 - 地方では持ち家率が既卒看護師の定着と負の関連、都市部では人口密度が新卒離職と正の関連を示した（探索的検証）
-- 本結果は、地域構造によって離職要因が異なる可能性を示しており、今後は都市部・地方部ごとの特徴量設計およびデータ収集戦略の最適化が課題となる。
+- 本結果は、地域構造によって離職要因が異なる可能性を示しており、今後は都市部・地方部ごとの特徴量設計およびデータ収集戦略の最適化が課題となる
 ---
 
 ## 🎯 Model Selection（Global Model）
 
-最終的に **全体離職率（turnover_total）のモデルは Model D** を採用しました。
+最終的に **全体離職率（turnover_total）のモデルは Model D** を採用した
 
 ![モデル性能比較](outputs/figures/model_comparison.png)
 
@@ -119,7 +118,7 @@
 
 ## 🧩 Extension: Subgroup Analysis
 
-全国一律モデルでは説明しきれない構造差を検証するため、離職要因が **キャリア段階 × 地域構造** によって異なる可能性を探索しました。
+全国一律モデルでは説明しきれない構造差を検証するため、離職要因が **キャリア段階 × 地域構造** によって異なる可能性を探索しました
 
 **方法（最小限）**  
 都道府県を人口密度中央値（259.6人/km²）で2群に分類（Urban / Rural）
@@ -134,17 +133,15 @@
 
 ## 🛠 How the Data is Structured
 
-本プロジェクトでは、公開統計データを統合し、
-Rawデータとコードから分析用データを再生成できる構造を意識して作成しています。
+本プロジェクトでは、公開統計データを統合し、Rawデータとコードから分析用データを再生成できる構造を意識して作成しています。
 
-公的統計は、定義や単位、集計粒度が資料ごとに異なることが多いため、
-分析結果の解釈がぶれないよう、以下の点を意識してデータを整理しています。
+公的統計は、定義や単位、集計粒度が資料ごとに異なることが多いため、分析結果の解釈がぶれないよう、以下の点を意識してデータを整理しています。
 
 ---
 
 ### 1) Rawデータの保持
 - `data/raw`：取得したデータをそのまま保存  
-- `data/processed`：加工後のデータを分けて管理  
+- `data/interim`：加工後のデータを分けて管理  
 
 ---
 
@@ -261,17 +258,19 @@ jupyter notebook
 推奨実行順：
 notebooks/00_extract_from_pdf.ipynb
 
-notebooks/01_create_master_dataset.ipynb
+notebooks/01_create_interim_dataset.ipynb
 
-notebooks/02_data_validation.ipynb
+notebooks/02_create_master_dataset.ipynb
 
-notebooks/03_eda_overview.ipynb
+notebooks/03_data_validation.ipynb
 
-notebooks/04_modeling.ipynb
+notebooks/04_eda_overview.ipynb
 
-notebooks/05_interpretation.ipynb
+notebooks/05_modeling.ipynb
 
-notebooks/06_subgroup_analysis.ipynb
+notebooks/06_interpretation.ipynb
+
+notebooks/07_subgroup_analysis.ipynb
 
 生成物：
 
@@ -288,17 +287,22 @@ nurse-turnover-analysis/
 │
 ├── notebooks/
 │   ├── 00_extract_from_pdf.ipynb
-│   ├── 01_create_master_dataset.ipynb
-│   ├── 02_data_validation.ipynb
-│   ├── 03_eda_overview.ipynb
-│   ├── 04_modeling.ipynb
-│   ├── 05_interpretation.ipynb
-│   └── 06_subgroup_analysis.ipynb
+│   ├── 01_create_interim_dataset.ipynb
+│   ├── 02_create_master_dataset.ipynb
+│   ├── 03_data_validation.ipynb
+│   ├── 04_eda_overview.ipynb
+│   ├── 05_modeling.ipynb
+│   ├── 06_interpretation.ipynb
+│   └── 07_subgroup_analysis.ipynb
 │
 ├── src/
 │   └── ETL処理およびデータ変換ロジックのモジュール化を想定（現在リファクタリング中）
+│
+├── docs/
+│   ├──data_dictionary.md
+│   └──column_spec_interim.md 
 │ 
-│ 
+│  
 ├── outputs/
 │   └── figures/
 │ 
